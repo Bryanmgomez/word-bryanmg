@@ -8,7 +8,8 @@ files:
 win:
   target:
     - nsis
-  icon: build/icon.ico
+  icon: build/icon.png
+  signAndEditExecutable: false
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true

@@ -5,7 +5,7 @@
   "description": "Word BryanMG — procesador de textos moderno, elegante y en español para Windows, Android y navegador",
   "main": "src/main/main.js",
   "author": "BryanMG",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
     "start": "electron .",
     "web": "node scripts/serve.js",

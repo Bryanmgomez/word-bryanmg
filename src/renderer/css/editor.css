@@ -1,0 +1,222 @@
+/* ---------- Hoja de papel ---------- */
+#page-zoom { zoom: 1; }
+
+.page {
+  position: relative;
+  width: 210mm;
+  min-height: var(--page-h, 1122px);
+  background: var(--paper);
+  color: var(--paper-text);
+  border: 1px solid var(--paper-border);
+  box-shadow: var(--paper-shadow);
+  padding: 14mm 20mm 16mm;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+}
+
+.page-header, .page-footer {
+  font-size: 13px;
+  color: var(--text-2);
+  min-height: 22px;
+  outline: none;
+  flex: none;
+  line-height: 1.45;
+}
+.page-header { margin-bottom: 9mm; }
+.page-footer { margin-top: auto; padding-top: 5mm; border-top: 1px solid var(--border); }
+.page-header:empty::before, .page-footer:empty::before {
+  content: attr(data-ph);
+  color: var(--muted);
+  opacity: .65;
+}
+.page-header:focus, .page-footer:focus { color: var(--paper-text); }
+.page-counter {
+  position: absolute;
+  right: 20mm;
+  bottom: 6mm;
+  font-size: 11.5px;
+  color: var(--muted);
+  user-select: none;
+}
+
+/* Guías de página (límites de hoja virtuales) */
+.page-guides { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.page-guide {
+  position: absolute;
+  left: 6mm;
+  right: 6mm;
+  border-top: 1px dashed var(--guide);
+}
+.page-guide span {
+  position: absolute;
+  right: 0;
+  top: -16px;
+  font-size: 10.5px;
+  color: var(--guide);
+  background: var(--paper);
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+/* ---------- Editor ---------- */
+#editor {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 240px;
+  outline: none;
+  font-family: var(--ui-font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--paper-text);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  caret-color: var(--accent);
+  -webkit-user-modify: read-write-plaintext-only;
+  -webkit-user-modify: read-write;
+}
+#editor.is-empty::before {
+  content: "Empieza a escribir aquí… o abre un documento desde el menú Archivo.";
+  color: var(--muted);
+  opacity: .75;
+  position: absolute;
+  pointer-events: none;
+  font-style: italic;
+}
+
+#editor > * { position: relative; }
+#editor p { margin: 0 0 .62em; }
+#editor > *:last-child { margin-bottom: 0; }
+
+#editor h1, #editor h2, #editor h3, #editor h4, #editor h5, #editor h6 {
+  margin: 1.1em 0 .45em;
+  line-height: 1.25;
+  font-weight: 650;
+  color: var(--paper-text);
+}
+#editor h1:first-child, #editor h2:first-child, #editor h3:first-child,
+#editor h4:first-child { margin-top: 0; }
+#editor h1 { font-size: 1.95em; }
+#editor h2 { font-size: 1.55em; }
+#editor h3 { font-size: 1.28em; }
+#editor h4 { font-size: 1.1em; color: var(--accent); }
+#editor h5 { font-size: 1em; }
+#editor h6 { font-size: .9em; color: var(--text-2); text-transform: uppercase; letter-spacing: .05em; }
+
+#editor blockquote {
+  margin: .8em 0;
+  padding: .35em 0 .35em 1em;
+  border-left: 3px solid var(--accent);
+  color: var(--text-2);
+  font-style: italic;
+}
+
+#editor ul, #editor ol { margin: .5em 0 .7em; padding-left: 1.7em; }
+#editor li { margin: .22em 0; }
+#editor li::marker { color: var(--accent); }
+
+#editor a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+#editor a:hover { color: var(--accent-2); }
+
+#editor img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#editor img.selected { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+#editor hr {
+  border: none;
+  border-top: 1.5px solid var(--border-2);
+  margin: 1.1em 0;
+}
+
+#editor table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: .7em 0;
+  font-size: .96em;
+}
+#editor td, #editor th {
+  border: 1px solid var(--border-2);
+  padding: 7px 10px;
+  min-width: 40px;
+  vertical-align: top;
+  position: relative;
+}
+#editor th {
+  background: var(--surface-3);
+  font-weight: 650;
+  text-align: left;
+}
+#editor tr:first-child td.first-col-th { background: var(--surface-3); }
+
+#editor .page-break {
+  position: relative;
+  border-top: 2px dashed var(--accent);
+  margin: 1.2em 0;
+  height: 0;
+  user-select: none;
+}
+#editor .page-break::after {
+  content: "⤓ salto de página";
+  position: absolute;
+  right: 0;
+  top: -9px;
+  background: var(--paper);
+  color: var(--accent);
+  font-size: 10.5px;
+  padding: 0 6px;
+  letter-spacing: .03em;
+}
+
+#editor pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: .6em .8em;
+  border-radius: 6px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: .9em;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+#editor mark[data-mark="find"] { background: #ffd54d; color: #171717; border-radius: 2px; }
+#editor mark[data-mark="find"].current { background: #ff9d2e; }
+
+/* ---------- Imagen seleccionada: herramientas flotantes ---------- */
+.img-tools {
+  position: absolute;
+  z-index: 70;
+  display: flex;
+  gap: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .22);
+  animation: dialog-in .14s ease;
+}
+.img-tools .ib { height: 28px; min-width: 28px; font-size: 12px; padding: 0 6px; }
+.img-tools .ib.danger:hover { background: var(--danger-soft); color: var(--danger); }
+.img-tools .sep { width: 1px; background: var(--border); margin: 3px 2px; }
+
+/* Número de página en pie (si está activo) */
+.page-counter b { font-weight: 600; color: var(--text-2); }
+
+@media (max-width: 760px) {
+  .page {
+    width: 100%;
+    min-height: calc(100vh - 240px);
+    padding: 18px 16px 24px;
+    border-radius: 8px;
+  }
+  .page-header { margin-bottom: 16px; }
+  .page-counter { right: 16px; bottom: 8px; }
+  #editor { font-size: 15.5px; min-height: 40vh; }
+}

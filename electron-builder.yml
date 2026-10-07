@@ -1,0 +1,16 @@
+appId: com.bryanmg.wordbryanmg
+productName: Word BryanMG
+directories:
+  output: release
+files:
+  - src/**/*
+  - package.json
+win:
+  target:
+    - nsis
+  icon: build/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  shortcutName: Word BryanMG

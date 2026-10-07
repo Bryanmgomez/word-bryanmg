@@ -1,0 +1,26 @@
+{
+  "name": "Word BryanMG",
+  "short_name": "Word BryanMG",
+  "description": "Procesador de textos moderno, elegante y en español. Funciona en Windows, navegador y Android. Tu espacio para crear.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f3f4f8",
+  "theme_color": "#5b4bd4",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

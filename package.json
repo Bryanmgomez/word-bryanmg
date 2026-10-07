@@ -1,0 +1,22 @@
+{
+  "name": "word-bryanmg",
+  "productName": "Word BryanMG",
+  "version": "1.0.0",
+  "description": "Word BryanMG — procesador de textos moderno, elegante y en español para Windows, Android y navegador",
+  "main": "src/main/main.js",
+  "author": "BryanMG",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "web": "node scripts/serve.js",
+    "test": "node scripts/verify.js",
+    "smoke": "node scripts/smoke.js",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "puppeteer-core": "^24.0.0"
+  },
+  "dependencies": {}
+}

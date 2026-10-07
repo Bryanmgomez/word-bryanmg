@@ -2,6 +2,16 @@
 
 Procesador de textos **moderno, elegante y en español**. Funciona en **Windows** (Electron), en el **navegador** y en **Android**. Todo el contenido se guarda localmente y la aplicación funciona **sin conexión**.
 
+[![Descargar](https://img.shields.io/badge/Descargar%20Instalador-Windows-5b4bd4?style=for-the-badge&logo=windows&logoColor=white&labelColor=3a2f8f)](https://github.com/Bryanmgomez/word-bryanmg/releases/latest/download/Word.BryanMG.Setup.1.0.0.exe)
+
+## Descargas
+
+| Plataforma | Archivo |
+| --- | --- |
+| **Windows (instalador)** | [Word BryanMG Setup 1.0.0.exe](https://github.com/Bryanmgomez/word-bryanmg/releases/latest/download/Word.BryanMG.Setup.1.0.0.exe) |
+
+También puedes ver todas las versiones en [Releases](https://github.com/Bryanmgomez/word-bryanmg/releases).
+
 ## Características
 
 - Edición enriquecida: negrita, cursiva, subrayado, colores, resaltado, títulos, listas, alineación, sangrías, interlineado, tablas, imágenes, enlaces y saltos de página.

@@ -22,6 +22,7 @@ import { initFileManager, renderFileManager } from './pages/files.js';
 import { openHistoryDialog } from './pages/history.js';
 import { initShortcuts } from './core/shortcuts.js';
 import { applyUISettings, openPersonalizationDialog } from './components/personalization.js';
+import { openSheets, isSheetsOpen, closeSheets } from './apps/sheets.js';
 
 const desktop = window.papiroDesktop || null;
 
@@ -607,6 +608,7 @@ const ACTIONS = {
   'undo': () => exec('undo'),
   'redo': () => exec('redo'),
   'settings': openPersonalizationDialog,
+  'sheets': () => { closeHome(); openSheets(); },
   'home-new': () => { closeHome(); return newDoc(); },
   'home-open': () => { closeHome(); return openDocumentPicker(); },
   'home-go': () => homeGo(lastActionEl && lastActionEl.dataset.view),
@@ -635,6 +637,7 @@ function runAction(action) {
 
 function escapeAction() {
   if (anyDialogOpen()) { handleEscape(); return; }
+  if (isSheetsOpen()) { closeSheets(); return; }
   if (isFindOpen()) { closeFind(); return; }
   if (isImageToolsOpen()) { hideImageTools(); return; }
   if (isFileMenuOpen()) { closeFileMenu(); return; }

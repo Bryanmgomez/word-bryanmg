@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/editor.css">
   <link rel="stylesheet" href="css/print.css">
+  <link rel="stylesheet" href="css/sheets.css">
 </head>
 <body data-toolbar="full" data-editorbg="papel">
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -42,6 +43,7 @@
     <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 13.5a4.2 4.2 0 0 0 6 0l2.6-2.6a4.2 4.2 0 0 0-6-6l-1.4 1.4"/><path d="M13.5 10.5a4.2 4.2 0 0 0-6 0l-2.6 2.6a4.2 4.2 0 0 0 6 6l1.4-1.4"/></g></symbol>
     <symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-4.5 4.5 4 3-2.5L20 17.5"/></g></symbol>
     <symbol id="i-table" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.3h18M3 14.6h18M9.8 9.3V20M15.4 9.3V20"/></g></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.3h18M3 14.6h18M9.3 4v16M14.7 4v16"/></g><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5.6 18.6h3.6l-1.8-3.6z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16.4 15v3.6M14.8 16.8h3.2"/></symbol>
     <symbol id="i-find" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.2"/><path d="m20 20-4.6-4.6"/></g></symbol>
     <symbol id="i-replace" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5h13l-3.2-3.2M20 15.5H7l3.2 3.2"/></g></symbol>
     <symbol id="i-print" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8.5" rx="2"/><path d="M7 13.5h10V20H7z"/></g></symbol>
@@ -72,6 +74,20 @@
     <symbol id="i-sliders" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></g></symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 9.5V19h12V9.5"/></g></symbol>
     <symbol id="i-fullscreen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></g></symbol>
+    <symbol id="i-sort-asc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h9M4 12h6M4 17h4M17.5 19V6M14 9.5 17.5 6 21 9.5"/></g></symbol>
+    <symbol id="i-sort-desc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h4M4 12h6M4 17h9M17.5 6v13M14 15.5 17.5 19 21 15.5"/></g></symbol>
+    <symbol id="i-border-all" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M12 4v16M4 12h16"/></g></symbol>
+    <symbol id="i-border-none" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke-dasharray="3 3"/></g></symbol>
+    <symbol id="i-border-outer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke-width="2.6"/></g></symbol>
+    <symbol id="i-merge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M7 12h4M9 10l2 2-2 2M17 12h-4M15 10l-2 2 2 2"/></g></symbol>
+    <symbol id="i-unmerge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M12 5v14"/></g></symbol>
+    <symbol id="i-fill-down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="6.5" rx="1"/><path d="M12 13.5v5.5M9 16.5 12 19.5 15 16.5"/></g></symbol>
+    <symbol id="i-fill-right" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="16" rx="1"/><path d="M13.5 12h5.5M16.5 9 19.5 12 16.5 15"/></g></symbol>
+    <symbol id="i-dec-inc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 16.5h5M3 11h5"/><path d="M17 12v7M13.5 15.5h7"/></g></symbol>
+    <symbol id="i-dec-dec" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 16.5h5M3 11h5"/><path d="M13.5 15.5h7"/></g></symbol>
+    <symbol id="i-sigma" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 5.5H7l4.5 6.5L7 18.5h10"/></g></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="6" cy="6" r="1.1"/><circle cx="12" cy="6" r="1.1"/><circle cx="18" cy="6" r="1.1"/><circle cx="6" cy="12" r="1.1"/><circle cx="12" cy="12" r="1.1"/><circle cx="18" cy="12" r="1.1"/><circle cx="6" cy="18" r="1.1"/><circle cx="12" cy="18" r="1.1"/><circle cx="18" cy="18" r="1.1"/></g></symbol>
+    <symbol id="i-clear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h11M4.6 15.4 12 8l4 4-6.6 6.6a2 2 0 0 1-2.8 0l-2-2a2 2 0 0 1 0-2.8Z"/></g></symbol>
   </svg>
 
   <div id="splash" class="screen">
@@ -104,6 +120,9 @@
         </button>
         <button class="home-act" data-action="home-go" data-view="plantillas">
           <svg class="icon"><use href="#i-layout"/></svg><span>Plantillas</span>
+        </button>
+        <button class="home-act" data-action="sheets">
+          <svg class="icon"><use href="#i-sheet"/></svg><span>Hoja de cálculo</span>
         </button>
         <button class="home-act" data-action="home-settings">
           <svg class="icon"><use href="#i-sliders"/></svg><span>Configuración</span>
@@ -343,6 +362,11 @@
               <button class="ib" data-action="stats" title="Estadísticas"><svg class="icon"><use href="#i-spell"/></svg></button>
               <button class="ib" data-action="settings" title="Configuración y personalización"><svg class="icon"><use href="#i-sliders"/></svg></button>
               <span class="rb-label">Ajustes</span>
+            </div>
+            <div class="rb-sep"></div>
+            <div class="rb-group">
+              <button class="ib" data-action="sheets" title="Hoja de cálculo (tipo Excel)"><svg class="icon"><use href="#i-sheet"/></svg></button>
+              <span class="rb-label">Aplicaciones</span>
             </div>
           </div>
         </section>

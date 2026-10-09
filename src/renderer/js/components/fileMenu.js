@@ -48,6 +48,8 @@ export function toggleFileMenu() {
     item('manager', 'Organizar archivos', 'i-folder', ''),
     item('history', 'Historial de cambios', 'i-clock', ''),
     el('div', { class: 'fm-sep' }),
+    item('sheets', 'Hoja de cálculo', 'i-sheet', ''),
+    el('div', { class: 'fm-sep' }),
     item('settings', 'Configuración y personalización', 'i-sliders', ''),
     item('shortcuts', 'Atajos de teclado', 'i-help', ''),
     item('about', 'Acerca de Word BryanMG', 'i-help', '')

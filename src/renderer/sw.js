@@ -1,4 +1,4 @@
-const CACHE_NAME = 'papiro-v1';
+const CACHE_NAME = 'papiro-v2';
 const PRECACHE = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const PRECACHE = [
   './css/layout.css',
   './css/editor.css',
   './css/print.css',
+  './css/sheets.css',
   './js/app.js',
   './js/core/util.js',
   './js/core/state.js',
@@ -29,7 +30,8 @@ const PRECACHE = [
   './js/components/fileMenu.js',
   './js/components/personalization.js',
   './js/pages/files.js',
-  './js/pages/history.js'
+  './js/pages/history.js',
+  './js/apps/sheets.js'
 ];
 
 self.addEventListener('install', (event) => {

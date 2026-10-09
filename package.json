@@ -1,7 +1,7 @@
 {
   "name": "word-bryanmg",
   "productName": "Word BryanMG",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Word BryanMG — procesador de textos moderno, elegante y en español para Windows, Android y navegador",
   "main": "src/main/main.js",
   "author": "BryanMG",

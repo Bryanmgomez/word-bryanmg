@@ -1,0 +1,343 @@
+/* ---------- Hoja de cálculo (app interna tipo Excel) ---------- */
+.sheets-app {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--text);
+  animation: fade-in .15s ease;
+}
+
+/* Barra superior */
+.sh-top {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border-bottom: 1px solid var(--border);
+}
+.sh-brand { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text); white-space: nowrap; }
+.sh-brand b { color: var(--accent); }
+.sh-brand .logo { width: 22px; height: 22px; color: var(--accent); }
+.sh-name {
+  flex: 0 1 260px;
+  min-width: 110px;
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+}
+.sh-name:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px var(--accent-soft); }
+.sh-actions { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+.sh-actions .btn { height: 32px; padding: 0 12px; font-size: 12.8px; }
+
+/* Cinta de formato por grupos */
+.sh-toolbar {
+  flex: none;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 4px 6px 0;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.sh-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px 8px 3px;
+  border-right: 1px solid var(--border);
+}
+.sh-group:last-child { border-right: none; }
+.sh-group-items { display: flex; align-items: center; gap: 2px; flex: 1; }
+.sh-group-label {
+  margin-top: 2px;
+  font-size: 9.5px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-3, var(--text-2));
+  opacity: .75;
+  text-align: center;
+  user-select: none;
+}
+.sh-tb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 7px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 13px;
+  transition: background .12s ease, color .12s ease, transform .05s ease;
+}
+.sh-tb .icon { width: 16px; height: 16px; }
+.sh-tb:hover { background: var(--surface-3); color: var(--text); }
+.sh-tb:active { transform: translateY(1px); }
+.sh-tb.active { background: var(--accent-soft); color: var(--accent); }
+.sh-tb-txt { font-weight: 700; font-size: 14px; min-width: 28px; padding: 0 6px; }
+.sh-tb.sh-b, .sh-tb.sh-i, .sh-tb.sh-u, .sh-tb.sh-s { font-size: 14px; }
+.sh-tb.sh-i { font-style: italic; font-family: Georgia, serif; }
+.sh-tb.sh-u { text-decoration: underline; }
+.sh-tb.sh-s { text-decoration: line-through; }
+.sh-fmt, .sh-border { height: 30px; font-size: 12.5px; }
+.sh-color {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 700;
+}
+.sh-color:hover { background: var(--surface-3); }
+.sh-color-a { border-bottom: 3px solid #171b26; line-height: 15px; }
+.sh-color-b { border-bottom: 3px solid #ffe066; line-height: 15px; }
+.sh-color input[type="color"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+
+/* Barra de fórmulas */
+.sh-formulabar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.sh-ref {
+  min-width: 92px;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 650;
+  padding: 6px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+.sh-fx-ico { color: var(--accent); font-style: italic; font-weight: 700; font-size: 13px; }
+.sh-fx {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 13px;
+}
+.sh-fx:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* Cuadrícula */
+.sh-grid-wrap {
+  flex: 1;
+  overflow: auto;
+  background: var(--surface-2);
+  min-height: 0;
+}
+.sh-grid {
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+.sh-grid th, .sh-grid td { padding: 0; margin: 0; }
+.sh-col, .sh-rowhead {
+  position: relative;
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-weight: 600;
+  font-size: 11.5px;
+  text-align: center;
+  height: 27px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+.sh-col { position: sticky; top: 0; z-index: 3; }
+.sh-rowhead { position: sticky; left: 0; z-index: 3; }
+.sh-corner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  background: var(--surface-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.sh-col.sel, .sh-rowhead.sel { background: var(--accent-soft); color: var(--accent); }
+.sh-rz { position: absolute; z-index: 6; }
+.sh-col .sh-rz { top: 0; right: -3px; width: 7px; height: 100%; cursor: col-resize; }
+.sh-rowhead .sh-rz { left: 0; bottom: -3px; width: 100%; height: 7px; cursor: row-resize; }
+.sh-rz:hover { background: var(--accent); opacity: .5; }
+.sh-grid td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.sh-nogrid .sh-grid td { border-color: transparent; }
+.sh-merged { background: var(--surface); }
+.sh-cell {
+  width: 100%;
+  height: 100%;
+  min-height: 27px;
+  padding: 0 7px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 12.8px;
+  font-family: var(--ui-font);
+  outline: none;
+}
+.sh-cell.sel { background: var(--accent-soft); }
+.sh-cell:focus {
+  position: relative;
+  z-index: 2;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+/* Barra de estado */
+.sh-status {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 30px;
+  padding: 0 12px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.sh-status-active { font-weight: 650; color: var(--text); min-width: 44px; }
+.sh-status-stats { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sh-status-right { display: flex; align-items: center; gap: 2px; }
+.sh-status-btn {
+  width: 24px;
+  height: 22px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1;
+}
+.sh-status-btn:hover { background: var(--surface-3); color: var(--text); }
+.sh-zoom-label { min-width: 46px; text-align: center; font-variant-numeric: tabular-nums; }
+
+/* Pestañas de hojas */
+.sh-tabs {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 42px;
+  padding: 0 10px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  overflow-x: auto;
+}
+.sh-tabs-list { display: flex; align-items: center; gap: 4px; }
+.sh-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12.8px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background .12s ease, color .12s ease;
+}
+.sh-tab:hover { background: var(--surface-3); color: var(--text); }
+.sh-tab.active { background: var(--accent-soft); color: var(--accent); }
+.sh-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.sh-tab-x { font-size: 14px; line-height: 1; opacity: .6; padding: 0 2px; border-radius: 4px; }
+.sh-tab-x:hover { opacity: 1; background: var(--danger-soft); color: var(--danger); }
+.sh-tab-add {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 17px;
+  line-height: 1;
+}
+.sh-tab-add:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Menú contextual */
+.sh-menu {
+  position: fixed;
+  z-index: 260;
+  min-width: 190px;
+  padding: 5px;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(15, 18, 30, .28);
+  animation: fade-in .1s ease;
+}
+.sh-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+}
+.sh-menu-item:hover { background: var(--accent-soft); color: var(--accent); }
+.sh-menu-sep { height: 1px; margin: 4px 6px; background: var(--border); }
+
+/* Buscar y reemplazar */
+.sh-find { display: flex; flex-direction: column; gap: 4px; min-width: 300px; }
+.sh-find .field { width: 100%; }
+.sh-find-btns { display: flex; gap: 8px; margin-top: 8px; }
+.sh-find-btns .btn { flex: 1; }
+.sh-find-info { margin-top: 8px; font-size: 12.5px; color: var(--text-2); min-height: 16px; }
+
+/* Ayuda de funciones */
+.sh-func-list { margin: 4px 0 10px; }
+.sh-func-title { font-size: 12px; font-weight: 700; color: var(--accent); margin-top: 8px; }
+.sh-func-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+@media (max-width: 760px) {
+  .sh-brand-txt { display: none; }
+  .sh-actions .btn span { display: none; }
+  .sh-actions .btn { padding: 0 10px; }
+  .sh-name { flex: 1 1 120px; }
+  .sh-group-label { display: none; }
+}
